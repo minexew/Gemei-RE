@@ -4,9 +4,10 @@
 
 Some links:
 
-- [Executable format description](https://github.com/flatmush/dingoo-sdk/blob/master/dingoo_sdk/doc/CCDL_APP_Format.txt)
+- [Executable format (CCDL) description](https://github.com/flatmush/dingoo-sdk/blob/master/dingoo_sdk/doc/CCDL_APP_Format.txt)
 - [SDK, examples etc.](https://code.google.com/archive/p/mp4sdk/downloads)
 - [USB boot tool](https://github.com/iggarpe/cc1800)
+- [Reverse engineering of 7 Days: Salvation](https://github.com/minexew/7days-RE), a game also released on the GA330
 
 ## GA330 Specs
 
@@ -44,3 +45,4 @@ Per https://gbatemp.net/threads/gemei-tech-a330-review.277717/#b1:
 - RAM is where?
 - Reset vectors are where?
 - How is firmware booted?
+- Text encoding for filenames etc is [GB 2312](https://en.wikipedia.org/wiki/GB_2312)
