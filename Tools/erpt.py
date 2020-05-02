@@ -1,36 +1,37 @@
 from pathlib import Path
 import os
+import struct
 
+ENCODING = "gb2312"
 ENCRYPTION_KEY = 0x40 # this is still a bit unclear, but seems to be common for all executables
+ERPT_ENTRY_SIZE = 508
 
 
 def uint32_t(bytes):
     return int.from_bytes(bytes, byteorder='little')
 
 
-def read_sz(input):
-    s = ''
+def decode_filename(filename: bytes) -> str:
+    pos = filename.find(b"\0")
 
-    while True:
-        b = input.read(1)
-        if not b or ord(b) == 0:
-            break
+    if pos >= 0:
+        filename = filename[:pos]
 
-        s += b.decode()
-
-    return s
+    return filename.decode(ENCODING)
 
 
 def extract_erpt(input, outdir: Path) -> None:
     count = uint32_t(input.read(4))
+    print(count)
 
     for i in range(count):
-        filename = read_sz(input)
-        input.seek(508 - (len(filename) + 1 + 4 + 4), 1)
+        filename, size, offset = struct.unpack("<500sII", input.read(ERPT_ENTRY_SIZE))
+        # file name is stored in a 500-byte field, padded with NUL bytes
+        filename = decode_filename(filename)
 
-        size = uint32_t(input.read(4))
-        offset = uint32_t(input.read(4))
         print('%s\t%d @ %08X' % (filename, size, offset))
+
+        assert size < 50_000_000
 
         filename_out = os.path.join(outdir, filename.replace("\\", "/"))
         dir = os.path.dirname(filename_out)
