@@ -7,7 +7,7 @@ Some links:
 - [Executable format (CCDL) description](https://github.com/flatmush/dingoo-sdk/blob/master/dingoo_sdk/doc/CCDL_APP_Format.txt)
 - [SDK, examples etc.](https://code.google.com/archive/p/mp4sdk/downloads)
 - [USB boot tool](https://github.com/iggarpe/cc1800)
-- [Reverse engineering of 7 Days: Salvation](https://github.com/minexew/7days-RE), a game also released on the GA330
+- [Reverse engineering of Soft3D engine and games](https://github.com/minexew/Soft3D-RE) by Dingoo Games
 
 ## GA330 Specs
 
