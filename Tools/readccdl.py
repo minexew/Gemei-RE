@@ -5,12 +5,12 @@ import struct
 
 class SectionType(Enum):
     CODE = 1
-    MISC = 6
+    # MISC = 6
     RESOURCES = 7
     IMPORT = 8
     EXPORT = 9
-    UNKNOWN1 = 10       # TODO: seen in the wild?
-    UNKNOWN2 = 11       # TODO: AES-encrypted code? seen in the wild?
+    # UNKNOWN1 = 10       # TODO: seen in the wild?
+    # UNKNOWN2 = 11       # TODO: AES-encrypted code? seen in the wild?
 
 def uint32_t(bytes):
     return int.from_bytes(bytes, byteorder='little')
@@ -124,9 +124,15 @@ with open(args.input_file, "rb") as input:
         name, type_, offset, size = struct.unpack("<4sIII", input.read(16))
 
         name = name.decode()
-        type_ = SectionType(type_)
 
-        print(f'Section "{name}" type={SectionType(type_)} offset={offset:08X}h size={size:08X}h')
+        try:
+            type_ = SectionType(type_)
+        except ValueError:
+            type_ = type_
+
+        if type_ == 0: continue
+
+        print(f'Section "{name}" type={type_} offset={offset:08X}h size={size:08X}h')
 
         if type_ == SectionType.CODE:
             unk1, entry_point, load_address, alloc_size = struct.unpack("<IIII", input.read(16))
