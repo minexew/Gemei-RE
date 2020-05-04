@@ -8,6 +8,7 @@ Some links:
 - [SDK, examples etc.](https://code.google.com/archive/p/mp4sdk/downloads)
 - [USB boot tool](https://github.com/iggarpe/cc1800)
 - [Reverse engineering of Soft3D engine and games](https://github.com/minexew/Soft3D-RE) by Dingoo Games
+- [ChinaChip - Rockbox Wiki](https://www.rockbox.org/wiki/ChinaChip)
 
 ## GA330 Specs
 
